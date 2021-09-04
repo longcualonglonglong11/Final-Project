@@ -6,7 +6,7 @@ namespace UnityChan{
     public class CameraTrack : MonoBehaviour
     {
         
-        public float smooth = 3.0f;
+        public float smooth = 100.0f;
         Transform standardPos, frontPos, jumpPos;
         bool quick = false;
 
