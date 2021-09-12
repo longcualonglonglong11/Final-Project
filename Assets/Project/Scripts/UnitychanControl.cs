@@ -31,7 +31,8 @@ namespace UnityChan{
 		static int locoState = Animator.StringToHash ("Base Layer.Locomotion");
 		static int jumpState = Animator.StringToHash ("Base Layer.Jump");
 		static int restState = Animator.StringToHash ("Base Layer.Rest");
-
+        public AudioSource[] soundEffects;
+        public AudioSource jumpSound;
         void Start()
         {
             anim = GetComponent<Animator>();
@@ -40,6 +41,8 @@ namespace UnityChan{
             Ucamera = GameObject.FindWithTag("MainCamera");
             orgColHight = col.height;
             orgVectColCenter = col.center;
+            soundEffects = GetComponents<AudioSource>();
+            jumpSound = soundEffects[0];
         }
 
         // Update is called once per frame
@@ -54,8 +57,10 @@ namespace UnityChan{
 			anim.speed = animSpeed;								
 			currentBaseState = anim.GetCurrentAnimatorStateInfo (0);
             if (Input.GetButtonDown("Jump") && !anim.IsInTransition(0)){
+
                 rb.AddForce (Vector3.up * jumpForce, ForceMode.VelocityChange);
                 anim.SetBool("Jump", true);
+                jumpSound.Play();
             } else {
                 anim.SetBool("Jump", false);
                 if (Input.GetKeyDown(KeyCode.LeftShift))
