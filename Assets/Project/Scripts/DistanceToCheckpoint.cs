@@ -24,6 +24,11 @@ public class DistanceToCheckpoint : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
+        if (Time.timeScale == 0f)
+        {
+            distanceText.text = "";
+            return;
+        }
         if (itemHandle.items == itemHandle.checkpoint.Length)
         {
             return;
