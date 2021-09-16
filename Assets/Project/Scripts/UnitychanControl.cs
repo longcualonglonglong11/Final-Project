@@ -8,8 +8,6 @@ namespace UnityChan{
     public class UnitychanControl : MonoBehaviour
     {
         float animSpeed = 1.5f;
-        float smoother = 3.0f;
-        
         float forwardSpeed = 2.5f;
         float runSpeed = 2.0f;
         float backwardSpeed = 2.0f;
@@ -31,8 +29,7 @@ namespace UnityChan{
 		static int locoState = Animator.StringToHash ("Base Layer.Locomotion");
 		static int jumpState = Animator.StringToHash ("Base Layer.Jump");
 		static int restState = Animator.StringToHash ("Base Layer.Rest");
-        public AudioSource[] soundEffects;
-        public AudioSource jumpSound;
+
         void Start()
         {
             anim = GetComponent<Animator>();
@@ -41,8 +38,6 @@ namespace UnityChan{
             Ucamera = GameObject.FindWithTag("MainCamera");
             orgColHight = col.height;
             orgVectColCenter = col.center;
-            soundEffects = GetComponents<AudioSource>();
-            jumpSound = soundEffects[0];
         }
 
         // Update is called once per frame
@@ -57,12 +52,18 @@ namespace UnityChan{
 			anim.speed = animSpeed;								
 			currentBaseState = anim.GetCurrentAnimatorStateInfo (0);
             if (Input.GetButtonDown("Jump") && !anim.IsInTransition(0)){
-
                 rb.AddForce (Vector3.up * jumpForce, ForceMode.VelocityChange);
                 anim.SetBool("Jump", true);
-                jumpSound.Play();
             } else {
                 anim.SetBool("Jump", false);
+                if (currentBaseState.fullPathHash == idleState){
+                    if (Input.GetKeyDown(KeyCode.Alpha3))
+                        anim.SetBool("Rest", true);
+                }
+                else if (currentBaseState.fullPathHash == restState){
+                    if (!anim.IsInTransition(0))
+                        anim.SetBool("Rest", false);
+                }
                 if (Input.GetKeyDown(KeyCode.LeftShift))
                     run = !run;
             }
@@ -84,21 +85,6 @@ namespace UnityChan{
 
             transform.localPosition += velocity * Time.fixedDeltaTime;
             transform.Rotate (0, h * rotateSpeed, 0);
-            /*
-            else if (currentBaseState.fullPathHash == idleState) {
-				if (useCurves) {
-					resetCollider ();
-				}
-				if (Input.GetButtonDown ("Jump")) {
-					anim.SetBool ("Rest", true);
-				}
-			}
-            else if (currentBaseState.fullPathHash == restState) {
-                if (!anim.IsInTransition (0)) {
-                    anim.SetBool ("Rest", false);
-                }
-            }
-            */
         }
 
         void resetCollider ()

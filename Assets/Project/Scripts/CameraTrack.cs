@@ -6,7 +6,7 @@ namespace UnityChan{
     public class CameraTrack : MonoBehaviour
     {
         
-        public float smooth = 100.0f;
+        public float smooth = 3.0f;
         Transform standardPos, frontPos, jumpPos;
         bool quick = false;
 
@@ -20,11 +20,11 @@ namespace UnityChan{
 			transform.forward = standardPos.forward;
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if (Input.GetKey(KeyCode.Alpha1))
+            if (Input.GetKey(KeyCode.Alpha1)){
                 setCameraPositionFrontView();
+            }
             else if (Input.GetKey(KeyCode.Alpha2))
                 setCameraPositionJumpView();
             else setCameraPositionNormalView();
@@ -32,6 +32,7 @@ namespace UnityChan{
 
         void setCameraPositionNormalView ()
 		{
+			Camera.main.fieldOfView = 70.0f;
 			if (quick == false) {
 				// the camera to standard position and direction
 				transform.position = Vector3.Lerp (transform.position, standardPos.position, Time.fixedDeltaTime * smooth);	
@@ -50,6 +51,7 @@ namespace UnityChan{
 			quick = true;
 			transform.position = frontPos.position;	
 			transform.forward = frontPos.forward;
+			Camera.main.fieldOfView = 40.0f;
 		}
 
 		void setCameraPositionJumpView ()
