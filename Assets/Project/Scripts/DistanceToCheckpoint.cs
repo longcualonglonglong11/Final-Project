@@ -14,42 +14,50 @@ public class DistanceToCheckpoint : MonoBehaviour {
     // Calculated distance value
     private float distance;
     public ItemHandle itemHandle;
-    private int lastCount;
+    private int lastCurItemId;
+    private int marginItem = 2;
+    private bool firstTime = true;
     public void Start()
     {
         itemHandle = GameObject.Find("Character").GetComponent<ItemHandle>();
         currentitemId = 0;
-        lastCount = 0;
+        lastCurItemId = 0;
     }
     // Update is called once per frame
     private void Update()
     {
-        if (itemHandle.items == itemHandle.checkpoint.Length)
+        if (Time.timeScale == 0f)
+        {
+            distanceText.text = "";
+            return;
+        }
+        if (itemHandle.items == itemHandle.total)
         {
             return;
         }
 
-        if (lastCount < itemHandle.items)
+        if (lastCurItemId != itemHandle.items || firstTime)
         {
-            int i = 0;
-            while(true)
+            float min = 9999999f;
+
+            for(int j = 0; j < itemHandle.itemsPos.Length; j++)
             {
-                if (itemHandle.checkpoint[i] != null)
+                if (itemHandle.gameObjects[j] == null) continue;
+
+                float curMag = (itemHandle.itemsPos[j] - transform.position).magnitude;
+                if (min > curMag)
                 {
-                    currentitemId = i;
-                    Debug.Log(currentitemId);
-                    break;
-                }
-                i++;
-                if (i == itemHandle.checkpoint.Length)
-                {
-                    i = 0;
+                    currentitemId = j;
+                    min = curMag;
                 }
             }
-
+            lastCurItemId = itemHandle.items;
+            firstTime = false;
         }
+
+        
         // Calculate distance value between character and checkpoint
-        distance = (itemHandle.checkpoint[currentitemId].transform.position - transform.position).magnitude;
+        distance = (itemHandle.itemsPos[currentitemId] - transform.position).magnitude - marginItem;
 
         // Display distance value via UI text
         // distance.ToString("F1") shows value with 1 digit after period

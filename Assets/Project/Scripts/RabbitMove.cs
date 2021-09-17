@@ -65,5 +65,8 @@ public class RabbitMove : MonoBehaviour
         {
             Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
         }
+        if (collision.gameObject.tag == "Pond"){
+            Destroy(gameObject);
+        }
     } 
 }
