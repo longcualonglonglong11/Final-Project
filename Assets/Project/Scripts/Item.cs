@@ -19,8 +19,9 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        int curIndex = System.Int32.Parse(gameObject.name.Replace("(Clone)", ""));
+        itemHandle.gameObjects[curIndex] = null;
         itemHandle.items++;
-       
         Destroy(gameObject);
     }
 }
