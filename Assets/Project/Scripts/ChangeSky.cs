@@ -9,6 +9,9 @@ public class ChangeSky : MonoBehaviour
     public GameObject lightObject, lightDay, fadeScreen, fireflies;
     Light light;
     bool current = true, check = false;
+    private GameObject player;
+    ItemHandle itemHandle;
+    public AudioSource soundEffect;
     void Start()
     {
         RenderSettings.skybox = day;  
@@ -16,18 +19,25 @@ public class ChangeSky : MonoBehaviour
         light.intensity = 2f;
         lightDay.SetActive(true);
         fireflies.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (GameObject.Find("Character") != null)
+            itemHandle = GameObject.Find("Character").GetComponent<ItemHandle>();
+        soundEffect = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    
+
     void Update()
     {
-        if (Time.timeScale == 0f)
-        {
-            return;
-        }
         if (Input.GetKeyDown(KeyCode.Alpha4)){
             changeSky();
+        }
+        if (Input.GetKey(KeyCode.Alpha5))
+        {
+            fadeScreen.SetActive(false);
+            fadeScreen.SetActive(true);
+            player.transform.position = itemHandle.originPo;
+            soundEffect.Play();
         }
         if (check){
             if (current){

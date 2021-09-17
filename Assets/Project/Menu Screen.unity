@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6200162, g: 0.83338594, b: 1.0625076, a: 1}
+  m_IndirectSpecularColor: {r: 0.61992466, g: 0.8336044, b: 1.0630761, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3235,8 +3235,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a49a3d1106254ff42887b535332cc983, type: 2}
-  m_sharedMaterial: {fileID: 8641039765809978292, guid: a49a3d1106254ff42887b535332cc983, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3299,7 +3299,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1455693886
@@ -4470,8 +4470,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wander in the Woods
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a49a3d1106254ff42887b535332cc983, type: 2}
-  m_sharedMaterial: {fileID: 8641039765809978292, guid: a49a3d1106254ff42887b535332cc983, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

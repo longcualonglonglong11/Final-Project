@@ -10,6 +10,8 @@ TagManager:
   - Invisible
   - Ground
   - Enviroment
+  - Chest
+  - DayLight
   layers:
   - Default
   - TransparentFX

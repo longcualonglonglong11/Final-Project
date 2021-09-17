@@ -30,6 +30,8 @@ namespace UnityChan{
 		static int jumpState = Animator.StringToHash ("Base Layer.Jump");
 		static int restState = Animator.StringToHash ("Base Layer.Rest");
 
+        ItemHandle itemHandle;
+
         void Start()
         {
             anim = GetComponent<Animator>();
@@ -38,6 +40,8 @@ namespace UnityChan{
             Ucamera = GameObject.FindWithTag("MainCamera");
             orgColHight = col.height;
             orgVectColCenter = col.center;
+            if (GameObject.Find("Character") != null)
+                itemHandle = GameObject.Find("Character").GetComponent<ItemHandle>();
         }
 
         // Update is called once per frame
@@ -52,6 +56,7 @@ namespace UnityChan{
 			anim.speed = animSpeed;								
 			currentBaseState = anim.GetCurrentAnimatorStateInfo (0);
             if (Input.GetButtonDown("Jump") && !anim.IsInTransition(0)){
+                itemHandle.jumpSound.Play();
                 rb.AddForce (Vector3.up * jumpForce, ForceMode.VelocityChange);
                 anim.SetBool("Jump", true);
             } else {

@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-    public float wait_time = 0.2f;
+    public float wait_time = 1;
 
 
     // Update is called once per frame
