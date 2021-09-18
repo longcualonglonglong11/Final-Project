@@ -39,7 +39,7 @@ public class ItemHandle : MonoBehaviour
         itemsPos = new Vector3[]
         {
             new Vector3(46, 40, 168),
-/*            new Vector3(232, 46, 168),
+            new Vector3(232, 46, 168),
             new Vector3(97, 44, 171),
             new Vector3(70, 42, 170),
             new Vector3(92, 43, 170),
@@ -58,7 +58,7 @@ public class ItemHandle : MonoBehaviour
             new Vector3(202, 33, 295),
             new Vector3(96, 33, 295),
             new Vector3(250, 47, 278)
-*/        };
+        };
         total = itemsPos.Length;
         gameObjects = new List<GameObject>();
         for (int i = 0; i < itemsPos.Length; i++)
